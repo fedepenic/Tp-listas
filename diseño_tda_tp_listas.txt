@@ -1,0 +1,577 @@
+
+
+Diseño de los Tipos de Dato Abstracto (T.D.A):
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Nombre de la clase: Menu.
+
+	Atributos de la clase: 
+
+		- opcion_usuario. Será de tipo caracter. El dominio de este atributo está compuesto por todas las letras del abecedario.
+		- lista_principal. Será un puntero a un objeto de clase Lista.
+
+	Métodos de la clase: 
+
+		/*
+        Descripcion: Método Constructor de Menú.
+        Precondiciones:-.
+        Postcondiciones: El atributo opcion_usuario queda correctamente inicializado y se crea una lista dinámica.
+        */
+        +Menu();
+
+        /*
+        Descripción: Método Destructor de Menú.
+        Precondiciones:-.
+        Postcondiciones: Se libera toda la memoria que se pidió al crear un Menú.
+        */
+        +~Menu(); 
+
+        /*
+        Descripción: Inicia la interfaz del programa usando los métodos y clases necesarios para realizar la misma.
+        Precondiciones: El archivo "trabajadores.txt" debe existir.
+        Postcondiciones: Se muestra un menú mediante consola dando a elegir distintas opciones al usuario,
+        el programa realizará las opciones del menú.
+        */
+        +vacío iniciar_interfaz(puntero a primera posicion de una cadena de caracteres archivo); 
+
+        /*
+        Descripción: El usuario ingresa la opción del menú que desea y esta se guarda en el atributo opcion_usuario
+        de un objeto de clase Menu.
+        Precondiciones: -.
+        Postcondiciones: La opción que el usuario ingresa es guardada correctamente en el atributo opcion_usuario. 
+        */
+        -vacío recibir_opcion();
+
+        /*
+        Descripción: De acuerdo con la opción que ha ingresado el usuario, se ejecuta una cierta tarea correspondiente al menú.
+        Precondiciones: La opción marcada por el usuario se encuentra dentro del dominio del atributo opcion_usuario.
+        Postcondiciones: Una tarea puntual es realizada, de acuerdo con la opción ingresada por el usuario.
+        */
+        -vacío ejecutar_opcion();
+
+        /*
+        Descripción: Se muestra una interfaz gráfica del Menú, además de dejar el atributo opcion_usuario en condición de activo. 
+        Precondiciones: -.
+        Postcondiciones: El usuario visualiza la interfaz gráfica del Menú y el atributo opcion_usuario se mantiene en condición 
+        de activo. 
+        */
+        -vacío mostrar_menu();
+
+        /*
+        Descripción: Se encarga de asignarle todos los correspondientes atributos a un empleado para luego agregarlo a la lista
+        dinámica. 
+        Precondiciones: Le llegan el empleado a agregar, junto con su sueldo mensual, llegadas tarde y ausencias. Estos últimos tres
+        se encuentran dentro del dominio de los correspondientes atributos de un objeto de clase Empleado.
+        Postcondiciones: Se carga correctamente un empleado junto con todos sus datos en la lista dinámica.
+        */
+        -vacío cargar_empleado(puntero a objeto de clase empleado empleado, flotante sueldo_mensual,
+        					   entero llegadas_tarde, entero ausencias);
+
+        /*
+        Descripción: Se encarga de asignarle todos los correspondientes atributos a un jornalero para luego agregarlo a la lista
+        dinámica. 
+        Precondiciones: Le llegan el jornalero a agregar, junto con su sueldo diario y dias trabajados. Estos últimos dos
+        se encuentran dentro del dominio de los correspondientes atributos de un objeto de clase Jornalero.
+        Postcondiciones: Se carga correctamente un jornalero junto con todos sus datos en la lista dinámica.
+        */
+        -vacío cargar_jornalero(puntero a objeto de clase jornalero jornalero, flotante sueldo_diario, entero dias_trabajados);
+
+        /*
+        Descripción: Se encarga de asignarle todos los correspondientes atributos a un consultor para luego agregarlo a la lista
+        dinámica. 
+        Precondiciones: Le llegan el consultor a agregar, junto con su sueldo de hora cátedra, la cantidad efectiva de horas cátedra
+        y la cantidad de días a descontar. Estos últimos tres se encuentran dentro del dominio de los correspondientes atributos de 
+        un objeto de clase Consultor.
+        Postcondiciones: Se carga correctamente un consultor junto con todos sus datos en la lista dinámica.
+        */
+        -vacío cargar_consultor(puntero a objeto de clase consultor consultor, flotante sueldo_hora_catedra,
+                                entero cantidad_horas_catedra, entero dias_a_descontar);
+
+        /*
+        Descripción: Lee todos los datos del archivo que le llega, identificando de qué tipo de trabajador se trata, para luego 
+        agregar a éste a la lista dinámica. 
+        Precondiciones: Le llega por parámetro el archivo a analizar, el cual se encuentra correctamente formado y existe.
+        Postcondiciones: Se leen efectivamente todos los datos del archivo para luego, según de qué tipo de trabajador se trate,
+        agregar a éste a la lista de trabajadores dinámica.
+        */
+        -vacío cargar_trabajador_desde_archivo(puntero a primera posición de cadena de caracteres archivo);
+
+        /*
+        Descripción: El usuario ingresa un número de legajo, y se comprueba si éste se encuentra en la lista dinámica, 
+        indicándoselo en caso de que sea cierto, además de mostrarle todos los datos correspondientes a ese legajo. 
+        Precondiciones: -.
+        Postcondiciones: El usuario es informado si existe o no el legajo que ingresó.
+        */
+        -vacío consultar_existencia_de_legajo();
+
+        /*
+        Descripción: Le pregunta al usuario cual número de legajo desea eliminar, y lo elimina efectivamente, en caso de 
+        existir. 
+        Precondiciones: -.
+        Postcondiciones: Se da de baja el legajo que requiere el usuario.
+        */
+        -vacío dar_de_baja_numero_legajo();
+
+        /*
+        Descripción: Le pregunta al usuario todos los datos correspondientes al trabajador que éste va a agregar, 
+        y se lo agrega efectivamente a la lista dinámica.
+        Precondiciones: -.
+        Postcondiciones: Se agrega correctamente el trabajador requerido por el usuario, a la lista dinámica.
+        */
+        -vacío menu_alta_trabajador();
+
+        /*
+        Descripción: Según el tipo de trabajador que le llega como parámetro del método, le pide al usuario que ingrese los 
+        correspondientes valores de los atributos del tipo de trabajador, para luego cargarlo en la lista dinámica.  
+        Precondiciones: Le llegan como parámetro el tipo de trabajador, el nombre de éste y el legajo. Éstos últimos dos, 
+        deben pertenecer al dominio de los correspondientes atributos de un objeto de clase Trabajador.
+        Postcondiciones: El usuario ingresa los correspondientes datos de un Trabajador y este se agrega a la lista dinámica.
+        */
+        -vacío dar_de_alta_trabajador(caracter tipo_de_trabajador, cadena de caracteres nombre, entero legajo);
+
+        /*
+        Descripción: Se muestra por pantalla la lista de todos los trabajadores junto con sus correspondientes datos. 
+        Precondiciones: En caso de que la lista esté vacía, no se imprime nada.
+        Postcondiciones: El usuario visulaiza todos los trabajadores de lista, junto con sus correspondientes datos.
+        */
+        -vacío listar_todos_los_trabajadores();
+
+        /*
+        Descripción: Se muestra por pantalla cual es el trabajador con el mayor sueldo de todos. 
+        Precondiciones: En caso de haber dos trabajadores que tengan el sueldo máximo, solo se muestra al primero de estos.
+        Postcondiciones: El usuario visualiza cual es el trabajador que presenta el mayor de los sueldos.
+        */
+        -vacío indicar_sueldo_maximo();
+
+        /*
+        Descripción: Se muestra por pantalla cual es el trabajador con el menor sueldo de todos. 
+        Precondiciones: En caso de haber dos trabajadores que tengan el sueldo mínimo, solo se muestra al primero de estos.
+        Postcondiciones: El usuario visualiza cual es el trabajador que presenta el menor de los sueldos.
+        */
+        -vacío indicar_sueldo_minimo();
+
+        /*
+        Descripción: Se muestra por pantalla cual es la sumatoria de todos los sueldos.  
+        Precondiciones: La sumatoria de sueldos se dará en números enteros, no se considerarán decimales, debido a que resultan
+        insignificantes en comparación con la sumatoria de muchos sueldos.
+        Postcondiciones: El usuario visualiza cual es la sumatoria de todos los sueldos. 
+        */
+        -vacío indicar_sumatoria_sueldo();
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Nombre de la clase: Lista.
+
+	Atributos de la clase: 
+
+		- tamanio. Será un entero. Dominio = {0...9999}
+		- primero. Será un puntero a un objeto de clase Nodo.
+
+	Métodos de la clase: 
+
+		/*
+        Descripción: Método constructor de lista.
+        Precondiciones: -.
+        Postcondiciones: Se inicializa el tamaño de la lista en cero y el puntero a nodo
+        primero apunta a NULL.
+        */
+		+Lista();
+
+		/*
+        Descripción: Método destructor de Lista. 
+        Precondiciones: -.
+        Postcondiciones: Libera toda la memoria que fue necesaria pedir al crear una lista. 
+        */
+		+~Lista();
+
+		/*
+        Descripción: Agrega a la lista dinámica el trabajador que le llega como parámetro y aumenta en uno
+        el tamaño de la lista dinámica.
+        Precondiciones: El puntero a trabajador que llega corresponde a un trabajador válido.
+        Postcondiciones: El trabajador que llega como parámetro del método es correctamente añadido a
+        la lista dinámica, la cual se incrementa en uno.
+        */
+		+vacío agregar(puntero a objeto de clase Trabajador d);
+
+		/*
+        Descripción: Se devuelve el tamaño de la lista dinámica. 
+        Precondiciones: -.
+        Postcondiciones: El tamaño de la lista es devuelto.
+        */
+		+entero tamanio();
+
+		/*
+        Descripción: Elimina el nodo correspondiente al Trabajador cuyo legajo se pasa como parámetro del 
+        método. Además, se decrementa la lista dinámica en uno. 
+        Precondiciones: El legajo que le llega como parámetro pertenece al dominio del atributo legajo 
+        de un objeto de clase Trabajador.
+        Postcondiciones: Se pierde la dirección del nodo cuyo dato es el trabajador con el legajo pasado
+        como parámetro del método y se disminuye el tamaño de la lista dinámica en uno.
+        */
+		+vacío dar_de_baja(entero legajo);
+
+		/*
+        Descripción: Busca cual es el trabajador con el sueldo más alto y lo devuelve como un
+        puntero. 
+        Precondiciones: -.
+        Postcondiciones: Se devuelve como puntero cual es el trabajador con el sueldo máximo. 
+        */
+		+puntero a objeto de clase Trabajador sueldo_maximo();
+
+		/*
+        Descripción: Busca cual es el trabajador con el sueldo más bajo y lo devuelve como un
+        puntero. 
+        Precondiciones: -.
+        Postcondiciones: Se devuelve como puntero cual es el trabajador con el sueldo mínimo. 
+        */
+		+puntero a objeto de clase Trabajador sueldo_minimo();
+
+		/*
+        Descripción: Se encarga de sumar todos los sueldos de los trabajadores y devolver esto como
+        valor de retorno del método. 
+        Precondiciones: En caso de que la lista de trabajadores esté vacía, la suma de sueldos es cero.
+        Postcondiciones: Se devuelve la suma de sueldos de todos los trabajadores de la lista.
+        */
+		+flotante sumar_sueldo();
+
+		/*
+        Descripción: Devuelve un puntero al trabajador cuyo legajo se pasa como parámetro del método.
+        Precondiciones: El legajo que se pasa como parámetro del método pertenece al dominio del atributo
+        legajo de un objeto de clase Trabajador. En caso de que ningún trabajador tenga dicho legajo, se 
+        devuelve NULL.
+        Postcondiciones: Se devuelve el puntero al trabajador cuyo número de legajo es pasado como parámetro
+        del método. 
+        */
+		+puntero a objeto de clase Trabajador consultar_legajo(entero legajo);
+
+		/*
+        Descripción: Devuelve un puntero al trabajador que se encuentre en la posición de la lista dinámica
+        que se pasa como parámetro del método.
+        Precondiciones: La variable posición, pasada como parámetro, es mayor que cero y menor o igual al 
+        tamaño total de la lista dinámica.
+        Postcondiciones: El puntero al trabajador que se encuentra en la posición pasada como parámetro del 
+        método es devuelto. 
+        */
+		+puntero a objeto de clase Trabajador obtener_trabajador(entero posicion);
+
+		/*
+        Descripción: Devuelve un puntero al nodo cuya posición en la lista dinámica es pasada como parámetro 
+        del método. 
+        Precondiciones: La variable posición, pasada como parámetro, es mayor que cero y menor o igual al 
+        tamaño total de la lista dinámica.
+        Postcondiciones: Un puntero al nodo cuya posición en la lista dinámica es pasada como parámetro del 
+        método es devuelto. 
+        */
+		-puntero a objeto de clase Nodo obtener_nodo(entero posicion);
+
+		/*
+        Descripción: Devuelve true en caso de que la lista dinámica esté vacía o false en caso contrario.  
+        Precondiciones: -.
+        Postcondiciones: True si la lista dinámica se encuentra vacía o false si tiene uno o más nodos. 
+        */
+		-booleano lista_vacia();
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Nombre de la clase: Nodo.
+
+	Atributos de la clase:
+
+		- dato. Será un puntero a un objeto de clase Trabajador.
+		- siguiente. Será un puntero a un objeto de clase Nodo. 
+
+	Métodos de la clase:
+
+		/*
+        Descripción: Método constructor de nodos. 
+        Precondiciones: -.
+        Postcondiciones: El dato del nodo se iguala al puntero a Trabajador pasado como parámetro
+        del método "d". Además, el puntero a Nodo siguiente se iguala a NULL. 
+        */
+		+Nodo(puntero a objeto de clase Trabajador d);
+
+		/*
+        Descripción: Se iguala el puntero "siguiente" de un objeto de clase Nodo a otro puntero
+        que es pasado como parámetro del método "ps".  
+        Precondiciones: El puntero pasado como parámetro corresponde a una dirección de memoria válida.
+        Postcondiciones: El puntero "siguiente" de un objeto de clase Nodo, ahora apunta a la dirección apuntada
+        por el puntero pasado como parámetro "ps".
+        */
+		+vacío cambiar_siguiente(puntero a objeto de clase Nodo ps);
+
+		/*
+        Descripción: Se devuelve el dato almacenado por el nodo. Es decir, una dirección de un trabajador. 
+        Precondiciones: -.
+        Postcondiciones: La dirección del trabajador almacenada en el Nodo se devuelve como valor de retorno del 
+        método. 
+        */
+		+puntero a objeto de clase Trabajador obtener_dato();
+
+		/*
+        Descripción: Se devuelve el puntero que apunta al siguiente nodo. 
+        Precondiciones: -.
+        Postcondiciones: El puntero al siguiente nodo es devuelto como valor de retorno del método.
+        */
+		+puntero a objeto de clase Nodo obtener_siguiente();
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Nombre de la clase: Trabajador.
+
+	Atributos de la clase: 
+
+		- nombre: Será una cadena de caracteres. Dominio = Letras comunes (Mayúsculas y minúsculas) y números.
+				  No se aceptan caracteres especiales.
+		- legajo: Será un entero. Dominio = {0...9999999} 
+		- sueldo_a_cobrar: Será un flotante. Dominio = {0...999999} 
+
+	Métodos de la clase: 
+
+		/*
+        Descripción: Método Constructor de trabajador.
+        Precondiciones: Le llegan el legajo a ingresar y el nombre a ingresar. Ambas variables deben encontrarse
+        dentro del dominio de los correspondientes atributos de un objeto de clase Trabajador.
+        Postcondiciones: El atributo legajo de un objeto de clase Trabajador es inicializado con el valor de la 
+        variable pasada como parámetro "legajo". El atributo nombre de un objeto de clase Trabajador es inicializado 
+        con el valor de la variable pasada como parámetro "nombre". Mientras que el atributo sueldo_a_cobrar es 
+        inicializado en cero.  
+        */
+		+Trabajador(entero legajo, cadena de caracteres nombre);
+
+		/*
+        Descripción: Se devuelve el atributo legajo de un objeto de clase Trabajador.  
+        Precondiciones: -.
+        Postcondiciones: El valor del atributo legajo de un objeto de clase Trabajador es devuelto. 
+        */
+		+entero obtener_legajo();
+
+		/*
+        Descripción: El atributo sueldo_a_cobrar de un objeto de clase Trabajador es igualado al valor
+        de la variable pasada como parámetro "nuevo_sueldo".   
+        Precondiciones: La variable nuevo_sueldo se encuentra dentro del dominio del atributo sueldo_a_cobrar
+        de un objeto de clase Trabajador.
+        Postcondiciones: El nuevo sueldo es asignado al atributo sueldo_a_cobrar de un objeto de clase Trabajador.
+        */
+		+vacío asignar_sueldo_a_cobrar(flotante nuevo_sueldo);
+
+		/*
+        Descripción: Se devuelve el valor del atributo sueldo_a_cobrar de un objeto de clase Trabajador.  
+        Precondiciones: -.
+        Postcondiciones: El valor del atributo sueldo_a_cobrar de un objeto de clase Trabajador es devuelto. 
+        */
+		+flotante obtener_sueldo_a_cobrar();
+
+		/*
+        Descripción: Método que es redefinido en las clases derivadas de Trajador. En este clase, 
+        particularmente no realiza ninguna tarea.  
+        Precondiciones: -.
+        Postcondiciones: -. 
+        */
+		+flotante liquidar_sueldo();
+
+		/*
+        Descripción: Método que es redefinido en las clases derivadas de Trajador. En este clase, 
+        particularmente no realiza ninguna tarea.  
+        Precondiciones: -.
+        Postcondiciones: -. 
+        */
+		+vacío a_cadena();
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Nombre de la clase: Jornalero. Heredera de clase Trabajador.
+
+	Atributos de la clase: 
+
+		- sueldo_diario: Será un flotante. Dominio = {0...9999} 
+		- cantidad_dias: Será un entero. Dominio = {0...30} 
+
+	Métodos de la clase: 
+
+		/*
+    	Descripción: Método Constructor de jornalero.
+    	Precondiciones: Le llegan el legajo a ingresar y el nombre a ingresar. Ambas variables deben encontrarse
+    	dentro del dominio de los correspondientes atributos de un objeto de clase Trabajador.
+    	Postcondiciones: Los atributos sueldo_diario y cantidad_dias de un objeto de clase Jornalero son 
+    	inicializados en cero. Además, se crea un objeto de clase Trabajador simultáneamente.
+    	*/
+		+Jornalero(entero legajo, cadena de caracteres nombre);
+
+		/*
+    	Descripción: El atributo sueldo_diario de un objeto de clase Jornalero es asignado con el valor
+    	de la variable pasada como parámetro "sueldo_diario". 
+    	Precondiciones: La variable pasada como parámetro "sueldo_diario" se encuentra dentro del dominio
+    	del atributo sueldo_diario de un objeto de clase Jornalero.
+    	Postcondiciones: El nuevo valor del atributo sueldo_diario de un objeto de clase Jornalero es igual
+    	al valor de la variable pasada como parámetro "sueldo_diario".
+		*/	
+		+vacío asignar_sueldo_diario(flotante sueldo_diario);
+
+		/*
+    	Descripción: El atributo cantidad_dias de un objeto de clase Jornalero es asignado con el valor
+    	de la variable pasada como parámetro "dias_trabajados". 
+    	Precondiciones: La variable pasada como parámetro "dias_trabajados" se encuentra dentro del dominio
+    	del atributo cantidad_dias de un objeto de clase Jornalero.
+    	Postcondiciones: El nuevo valor del atributo cantidad_dias de un objeto de clase Jornalero es igual
+    	al valor de la variable pasada como parámetro "dias_trabajados".
+		*/	
+    	+vacío asignar_dias_trabajados(entero dias_trabajados);
+
+    	/*
+    	Descripción: Devuelve el sueldo bruto a cobrar por un Jornalero luego de un mes de trabajo. 
+    	Precondiciones: -.
+    	Postcondiciones: El sueldo bruto a cobrar por un Jornalero es devuelto.
+		*/	
+		+flotante liquidar_sueldo();
+
+		/*
+    	Descripción: Se muestran por pantalla todos los datos correspondientes a un Jornalero. 
+    	Precondiciones: -.
+    	Postcondiciones: Todos los datos correspondientes a un Jornalero son mostrados por pantalla.
+		*/	
+		+vacío a_cadena();
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Nombre de la clase: Empleado. Heredera de clase Trabajador.
+
+	Atributos de la clase: 
+
+		- sueldo_mensual: Será un flotante. Dominio = {0...999999} 
+		- llegadas_tarde: Será un entero. Dominio = {0...30}
+		- ausencias: Será un entero. Dominio = {0...30} 
+
+	Métodos de la clase: 
+
+		/*
+    	Descripción: Método Constructor de empleado.
+   		Precondiciones: Le llegan el legajo a ingresar y el nombre a ingresar. Ambas variables deben encontrarse
+   		dentro del dominio de los correspondientes atributos de un objeto de clase Trabajador.
+   		Postcondiciones: Los atributos sueldo_mensual, llegadas_tarde y ausencias de un objeto de clase Empleado son 
+   		inicializados en cero. Además, se crea un objeto de clase Trabajador simultáneamente.
+    	*/
+		+Empleado(entero legajo, cadena de caracteres nombre);
+
+		/*
+   		Descripción: El atributo sueldo_mensual de un objeto de clase Empleado es asignado con el valor
+   		de la variable pasada como parámetro "sueldo_mensual". 
+  		Precondiciones: La variable pasada como parámetro "sueldo_mensual" se encuentra dentro del dominio
+   		del atributo sueldo_mensual de un objeto de clase Empleado.
+    	Postcondiciones: El nuevo valor del atributo sueldo_mensual de un objeto de clase Empleado es igual
+    	al valor de la variable pasada como parámetro "sueldo_mensual".
+		*/	
+    	+vacío asignar_sueldo_mensual(flotante sueldo_mensual); 
+
+    	/*
+    	Descripción: El atributo llegadas_tardes de un objeto de clase Empleado es asignado con el valor
+    	de la variable pasada como parámetro "llegadas_tarde". 
+   		Precondiciones: La variable pasada como parámetro "llegadas_tarde" se encuentra dentro del dominio
+    	del atributo llegadas_tarde de un objeto de clase Empleado.
+    	Postcondiciones: El nuevo valor del atributo llegadas_tarde de un objeto de clase Empleado es igual
+    	al valor de la variable pasada como parámetro "llegadas_tarde".
+		*/	
+    	+vacío asignar_llegadas_tarde(entero llegadas_tarde);
+
+    	/*
+    	Descripción: El atributo ausencias de un objeto de clase Empleado es asignado con el valor
+    	de la variable pasada como parámetro "ausencias". 
+   		Precondiciones: La variable pasada como parámetro "ausencias" se encuentra dentro del dominio
+    	del atributo ausencias de un objeto de clase Empleado.
+    	Postcondiciones: El nuevo valor del atributo ausencias de un objeto de clase Empleado es igual
+    	al valor de la variable pasada como parámetro "ausencias".
+		*/	
+    	+vacío asignar_ausencias(entero ausencias);
+
+    	/*
+   		Descripción: Devuelve el sueldo bruto a cobrar por un Empleado luego de un mes de trabajo. 
+    	Precondiciones: -.
+    	Postcondiciones: El sueldo bruto a cobrar por un Empleado es devuelto.
+		*/	
+		+flotante liquidar_sueldo();
+
+		/*
+   		Descripción: Se muestran por pantalla todos los datos correspondientes a un Empleado. 
+    	Precondiciones: -.
+    	Postcondiciones: Todos los datos correspondientes a un Empleado son mostrados por pantalla.
+		*/	
+		+vacío a_cadena();
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Nombre de la clase: Consultor. Heredera de clase Trabajador.
+
+	Atributos de la clase: 
+
+		- valor_hora_catedra: Será un flotante. Dominio = {0...9999} 
+		- cantidad_horas_catedra: Será un entero. Dominio = {0...99}
+		- horas_a_descontar: Será un entero. Dominio = {0...99} 
+
+	Métodos de la clase: 
+
+		/*
+    	Descripción: Método Constructor de Consultor.
+    	Precondiciones: Le llegan el legajo a ingresar y el nombre a ingresar. Ambas variables deben encontrarse
+    	dentro del dominio de los correspondientes atributos de un objeto de clase Trabajador.
+    	Postcondiciones: Los atributos valor_hora_catedra, cantidad_horas_catedra y horas_a_descontar de un objeto de 
+    	clase Consultor son inicializados en cero. Además, se crea un objeto de clase Trabajador simultáneamente.
+    	*/
+		+Consultor(entero legajo, cadena_de_caracteres nombre);
+
+		/*
+    	Descripción: El atributo valor_hora_catedra de un objeto de clase Consultor es asignado con el valor
+    	de la variable pasada como parámetro "valor_hora_catedra". 
+   		Precondiciones: La variable pasada como parámetro "valor_hora_catedra" se encuentra dentro del dominio
+    	del atributo valor_hora_catedra de un objeto de clase Consultor.
+    	Postcondiciones: El nuevo valor del atributo valor_hora_catedra de un objeto de clase Consultor es igual
+    	al valor de la variable pasada como parámetro "valor_hora_catedra".
+		*/	
+		+vacío asignar_sueldo_hora_catedra(flotante valor_hora_catedra);
+
+		/*
+    	Descripción: El atributo cantidad_horas_catedra de un objeto de clase Consultor es asignado con el valor
+    	de la variable pasada como parámetro "cantidad_horas_catedra". 
+   		Precondiciones: La variable pasada como parámetro "cantidad_horas_catedra" se encuentra dentro del dominio
+    	del atributo cantidad_horas_catedras de un objeto de clase Consultor.
+    	Postcondiciones: El nuevo valor del atributo cantidad_horas_catedra de un objeto de clase Consultor es igual
+    	al valor de la variable pasada como parámetro "cantidad_horas_catedra".
+		*/	
+        +vacío asignar_cantidad_horas_catedra(entero cantidad_horas_catedra);
+
+        /*
+    	Descripción: El atributo horas_a_descontar de un objeto de clase Consultor es asignado con el valor
+    	de la variable pasada como parámetro "horas_a_descontar". 
+   		Precondiciones: La variable pasada como parámetro "horas_a_descontar" se encuentra dentro del dominio
+    	del atributo horas_a_descontar de un objeto de clase Consultor.
+    	Postcondiciones: El nuevo valor del atributo horas_a_descontar de un objeto de clase Consultor es igual
+    	al valor de la variable pasada como parámetro "horas_a_descontar".
+		*/	
+        +vacío asignar_horas_a_descontar(entero horas_a_descontar);
+
+        /*
+   		Descripción: Devuelve el sueldo bruto a cobrar por un Consultor luego de un mes de trabajo. 
+    	Precondiciones: -.
+    	Postcondiciones: El sueldo bruto a cobrar por un Consultor es devuelto.
+		*/	
+      	+flotante liquidar_sueldo();
+
+      	/*
+   	 	Descripción: Se muestran por pantalla todos los datos correspondientes a un Consultor. 
+    	Precondiciones: -.
+    	Postcondiciones: Todos los datos correspondientes a un Consultor son mostrados por pantalla.
+		*/	
+        +vacío a_cadena();
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
